@@ -1,0 +1,49 @@
+<div class="text-center">
+  <h1>新增支出</h1>
+  <p class="text-danger">*為必填欄位</p>
+</div>
+
+
+<div class="mx-auto mt-4">
+  <form action="/records" method="post">
+    <div class="row justify-content-center">
+      <div class="form-group col-9 row">
+        <label for="name" class="col-sm-3 col-lg-2 col-form-label">名稱*：</label>
+        <div class="col-sm-9 col-lg-10">
+          <input type="text" name="name" class="form-control" id="name" required>
+        </div>
+      </div>
+
+      <div class="form-group col-9 row">
+        <label for="date" class="col-sm-3 col-lg-2 col-form-label">日期*：</label>
+        <div class="col-sm-9 col-lg-10">
+          <input type="date" name="date" class="form-control" id="date" required>
+        </div>
+      </div>
+
+      <div class="form-group col-9 row">
+        <label for="category" class="col-sm-3 col-lg-2 col-form-label">類別*：</label>
+        <div class="col-sm-9 col-lg-10">
+          <select class="custom-select" name="category" id="category" required>
+            <option value="家居物業">家居物業</option>-
+            <option value="交通出行">交通出行</option>
+            <option value="休閒娛樂">休閒娛樂</option>
+            <option value="餐飲食品">餐飲食品</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group col-9 row">
+        <label for="amount" class="col-sm-3 col-lg-2 col-form-label">金額*：</label>
+        <div class="col-sm-9 col-lg-10">
+          <input type="number" name="amount" class="form-control" id="amount" min="0" required>
+        </div>
+      </div>
+
+      <div class="col-9 text-center my-3">
+        <button class="btn btn-warning" type="submit">新增支出</button>
+      </div>
+    </div>
+  </form>
+</div>
