@@ -1,0 +1,92 @@
+<div class="row my-3 mx-auto justify-content-end">
+  <form action="/records/filter" class="form-inline col-12 row justify-content-end">
+    <label for="filter" class="mr-3 col-auto">類別：</label>
+    <select class="custom-select mr-3 col-3 col-lg-2" name="filter" id="filter">
+      <option value="">全部</option>
+      <option value="家居物業" {{#if (isEqual filter "家居物業" )}}selected{{/if}}>家居物業</option>
+      <option value="交通出行" {{#if (isEqual filter "交通出行" )}}selected{{/if}}>交通出行</option>
+      <option value="休閒娛樂" {{#if (isEqual filter "休閒娛樂" )}}selected{{/if}}>休閒娛樂</option>
+      <option value="餐飲食品" {{#if (isEqual filter "餐飲食品" )}}selected{{/if}}>餐飲食品</option>
+      <option value="其他" {{#if (isEqual filter "其他" )}}selected{{/if}}>其他</option>
+    </select>
+    <button class="btn btn-primary col-auto">查詢</button>
+  </form>
+</div>
+
+<!-- 當傳入的records有資料時才會顯示 -->
+{{#if records}}
+<div class="row mx-auto justify-content-center my-3">
+  <div class="col-6 d-flex flex-row justify-content-center">
+    <div class="mr-3">總金額：</div>
+    <h1 style="color:	#FF9224">{{totalAmount}}</h1>
+  </div>
+</div>
+{{/if}}
+
+<ul class="list-group">
+  {{#each records}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-7 row align-items-center ml-1">
+        <div class="col-3 col-lg-1 text-right" style="font-size: 30px; color:#66d4d4">
+          <i class="{{this.icon}}"></i>
+        </div>
+        <div class="col-6 col-lg-8 d-flex flex-column">
+          <div>
+            <h4>{{this.name}}</h4>
+          </div>
+          <div>{{this.date}}</div>
+        </div>
+        <div class="col-auto align-items-center">
+          {{this.amount}}
+        </div>
+      </div>
+      <div class="col-5 text-right align-self-center">
+        <a href="/records/{{this.id}}/edit">
+          <button class="btn btn-success mr-2">修改</button>
+        </a>
+        <button class="btn btn-danger mr-2" data-toggle="modal" data-target="#delete-btn{{this.id}}">刪除</button>
+      </div>
+    </div>
+  </li>
+
+  <!-- Modal -->
+  <div class="modal fade" id="delete-btn{{this.id}}" tabindex="-1" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">確認資訊</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          您確定要刪除這筆支出嗎？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <form action="/records/{{this.id}}?_method=DELETE" method="POST" style="display: inline">
+            <button class="btn btn-danger">Yes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</ul>
+
+<!-- 如果選擇某類別沒有任何支出才會回傳 -->
+{{#unless records}}
+<div class="row mt-4">
+  <div class="col-12 text-center text-secondary">
+    <h1>很抱歉，「{{filter}}」的類別沒有任何支出，請重新查詢！</h1>
+  </div>
+</div>
+{{/unless}}
+
+<div class="my-5 text-center">
+  <a href="/records/new">
+    <button class="btn btn-lg btn-warning">新增支出</button>
+  </a>
+</div>
