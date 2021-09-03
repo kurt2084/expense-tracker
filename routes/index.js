@@ -1,14 +1,16 @@
-// 載入express & express router
+// import express
 const express = require('express')
+// set  router var for express Router func
 const router = express.Router()
-
-// 載入不同router
+// import home
 const home = require('./modules/home')
+// import records
 const records = require('./modules/records')
 
-// 導引routes
+// use home route
 router.use('/', home)
+// use records route
 router.use('/records', records)
 
-// 導出Router
+// export router
 module.exports = router
