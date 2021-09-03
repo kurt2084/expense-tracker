@@ -1,5 +1,5 @@
-// 創建category icon
-const CATEGORY = {
+// set category icon
+const Category = {
   home: 'fas fa-home',
   transportation: 'fas fa-shuttle-van',
   entertainment: 'fas fa-grin-beam',
@@ -7,5 +7,5 @@ const CATEGORY = {
   other: 'fas fa-pen',
 }
 
-// 導出CATEGORY
-module.exports = CATEGORY
+// export category
+module.exports = Category
