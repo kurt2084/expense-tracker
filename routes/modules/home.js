@@ -1,16 +1,13 @@
-// 載入express & express router
+// import express
 const express = require('express')
+// set  router var for express Router func
 const router = express.Router()
-
-// 載入Record model
-const Record = require('../../models/Record')
-
-// 載入category icon
-const CATEGORY = require('../../models/CATEGORY')
-
-// 載入moment(轉換date format)
+// import record
+const Record = require('../../models/record')
+// import category icon
+const Category = require('../../models/category')
+// import moment(date format func)
 const moment = require('moment')
-
 // home page routes setting
 router.get('/', (req, res) => {
   Record.find()
@@ -20,19 +17,19 @@ router.get('/', (req, res) => {
       for (let record of records) {
         switch (record.category) {
           case '家居物業':
-            record.icon = CATEGORY.home
+            record.icon = Category.home
             break
           case '交通出行':
-            record.icon = CATEGORY.transportation
+            record.icon = Category.transportation
             break
           case '休閒娛樂':
-            record.icon = CATEGORY.entertainment
+            record.icon = Category.entertainment
             break
           case '餐飲食品':
-            record.icon = CATEGORY.food
+            record.icon = Category.food
             break
           case '其他':
-            record.icon = CATEGORY.other
+            record.icon = Category.other
             break
         }
         record.date = moment(record.date).format('YYYY-MM-DD')
@@ -42,6 +39,5 @@ router.get('/', (req, res) => {
     })
     .catch(err => { console.log(err) })
 })
-
-// 導出router
+// export router
 module.exports = router
