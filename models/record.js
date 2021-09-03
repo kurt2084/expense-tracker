@@ -1,5 +1,8 @@
+// import mongoose
 const mongoose = require('mongoose')
+// set db schema var 
 const Schema = mongoose.Schema
+// set recordschema data type
 const recordSchema = new Schema({
   id: {
     type: Number,
@@ -21,4 +24,5 @@ const recordSchema = new Schema({
     required: true
   }
 })
+// export recordschema 
 module.exports = mongoose.model('Record', recordSchema)
