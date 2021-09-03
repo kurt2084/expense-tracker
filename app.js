@@ -1,41 +1,38 @@
-// 載入express
+// import express and set port
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// 載入routes
+// import routes
 const routes = require('./routes')
 
-// 載入mongoose setting 
+// import mongoose
 require('./config/mongoose')
 
-// 載入express-handlebars
+// import express-handlebars
 const exphbs = require('express-handlebars')
 
-// 載入method-override
+// import method-override
 const methodOverride = require('method-override')
 
-// setting template engine
+// set template engine
 app.engine('hbs', exphbs({
-  defaultLayout: 'main',
-  extname: '.hbs',
-  // express-handlebars helpers setting
-  helpers: {
-    isEqual: function (a, b) { return a === b }
-  }
-}))
+  defaultLayout: 'main', 
+  extname: '.hbs', 
+  helpers: { isEqual: function (a, b) { return a === b }}
+})) 
 app.set('view engine', 'hbs')
 
-// setting body-parser
+// set body-parser
 app.use(express.urlencoded({ extended: true }))
 
-// setting method-override
+// set method-override
 app.use(methodOverride('_method'))
 
-// routes setting
+// set route
 app.use(routes)
 
-// start the express server and listening for connection
+// listen to connection
 app.listen(PORT, () => {
-  console.log(`This Express is running on http://localhost:${PORT}`)
+  console.log(`App is running on http://localhost:${PORT}`)
 })
