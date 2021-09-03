@@ -1,13 +1,14 @@
-// 載入mongoose
+// import mongoose
 const mongoose = require('mongoose')
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense'
 
-// 與database連線
+// set mongoose connection
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
-// return mongoose connect info
+// set db var for mongoose connection
 const db = mongoose.connection
 
+// return db status
 db.on('error', () => {
   console.log('mongoose error!')
 })
@@ -16,4 +17,5 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+//export db
 module.exports = db
